@@ -13,6 +13,22 @@ const links = [
 export default function Navbar({ brand }) {
   const [open, setOpen] = useState(false);
 
+  function handleNavClick(e, href) {
+    e.preventDefault();
+    const id = href.replace("#", "");
+    const scrollToTarget = () => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    };
+    if (open) {
+      // Wait for the mobile menu's collapse animation to finish before scrolling,
+      // otherwise the shrinking layout races with the scroll and cancels it.
+      setOpen(false);
+      setTimeout(scrollToTarget, 320);
+    } else {
+      scrollToTarget();
+    }
+  }
+
   return (
     <nav className="sticky top-0 z-50 border-b border-border bg-bg/70 backdrop-blur-md">
       <div className="mx-auto flex h-[72px] max-w-[1180px] items-center justify-between px-6">
@@ -23,7 +39,7 @@ export default function Navbar({ brand }) {
 
         <div className="hidden gap-8 text-sm font-semibold md:flex">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-ink-dim transition-colors hover:text-ink">
+            <a key={l.href} href={l.href} onClick={(e) => handleNavClick(e, l.href)} className="text-ink-dim transition-colors hover:text-ink">
               {l.label}
             </a>
           ))}
@@ -31,6 +47,7 @@ export default function Navbar({ brand }) {
 
         <a
           href="#contact"
+          onClick={(e) => handleNavClick(e, "#contact")}
           className="hidden rounded-xl bg-gradient-to-r from-pink to-yellow px-5 py-2 text-sm font-bold text-[#1a0d13] md:inline-block"
         >
           Hubungi
@@ -58,7 +75,7 @@ export default function Navbar({ brand }) {
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => handleNavClick(e, l.href)}
                   className="rounded-lg px-3 py-2.5 text-sm font-semibold text-ink-dim hover:bg-card hover:text-ink"
                 >
                   {l.label}
