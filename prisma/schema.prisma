@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+
+  @@map("admins")
+}
+
+model Profile {
+  id        String   @id @default("profile")
+  name      String   @default("Catur Pamungkas")
+  brand     String   @default("ZenHub")
+  tagline   String   @default("Dari rakit PC, sampai bangun aplikasi web.")
+  bio       String   @db.Text
+  avatarUrl String?
+  email     String?
+  github    String?
+  linkedin  String?
+  whatsapp  String?
+  cvUrl     String?
+  updatedAt DateTime @updatedAt
+
+  @@map("profile")
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  thumbnail   String?
+  demoUrl     String?
+  repoUrl     String?
+  tags        String
+  featured    Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model GalleryItem {
+  id        String   @id @default(cuid())
+  imageUrl  String
+  caption   String
+  category  String   @default("design")
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+
+  @@map("gallery_items")
+}
+
+model Skill {
+  id       String @id @default(cuid())
+  name     String
+  category String
+  emoji    String @default("⚡")
+  order    Int    @default(0)
+
+  @@map("skills")
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  content   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("messages")
+}
