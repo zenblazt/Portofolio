@@ -26,16 +26,16 @@ async function main() {
   });
 
   const skillData = [
-    { name: "Perakitan PC", category: "hardware", emoji: "🔧", order: 1 },
-    { name: "Troubleshooting Hardware", category: "hardware", emoji: "🛠️", order: 2 },
-    { name: "Instalasi OS", category: "hardware", emoji: "💽", order: 3 },
-    { name: "Jaringan Dasar", category: "hardware", emoji: "🌐", order: 4 },
-    { name: "CorelDRAW", category: "design", emoji: "✏️", order: 1 },
-    { name: "Canva", category: "design", emoji: "🖼️", order: 2 },
-    { name: "Microsoft Office", category: "design", emoji: "📊", order: 3 },
-    { name: "Next.js", category: "webdev", emoji: "⚡", order: 1 },
-    { name: "Prisma / MySQL", category: "webdev", emoji: "🗄️", order: 2 },
-    { name: "Tailwind CSS", category: "webdev", emoji: "🎨", order: 3 },
+    { name: "Perakitan PC", category: "IT & Hardware", emoji: "🔧", order: 1 },
+    { name: "Troubleshooting Hardware", category: "IT & Hardware", emoji: "🛠️", order: 2 },
+    { name: "Instalasi OS", category: "IT & Hardware", emoji: "💽", order: 3 },
+    { name: "Jaringan Dasar", category: "IT & Hardware", emoji: "🌐", order: 4 },
+    { name: "CorelDRAW", category: "Desain & Office", emoji: "✏️", order: 1 },
+    { name: "Canva", category: "Desain & Office", emoji: "🖼️", order: 2 },
+    { name: "Microsoft Office", category: "Desain & Office", emoji: "📊", order: 3 },
+    { name: "Next.js", category: "Web & Produk Digital", emoji: "⚡", order: 1 },
+    { name: "Prisma / MySQL", category: "Web & Produk Digital", emoji: "🗄️", order: 2 },
+    { name: "Tailwind CSS", category: "Web & Produk Digital", emoji: "🎨", order: 3 },
   ];
 
   for (const s of skillData) {

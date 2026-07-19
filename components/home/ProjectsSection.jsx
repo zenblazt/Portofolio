@@ -5,6 +5,7 @@ import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import Modal from "@/components/ui/Modal";
 import Button from "@/components/ui/Button";
+import { normalizeUrl } from "@/lib/utils";
 
 const glowColors = ["bg-pink", "bg-blue", "bg-mint", "bg-yellow"];
 const spans = ["lg:col-span-4", "lg:col-span-2", "lg:col-span-2", "lg:col-span-4"];
@@ -78,12 +79,12 @@ export default function ProjectsSection({ projects }) {
             </div>
             <div className="flex flex-wrap gap-3">
               {active.demoUrl && (
-                <Button as="a" href={active.demoUrl} target="_blank" rel="noopener noreferrer" variant="primary">
+                <Button as="a" href={normalizeUrl(active.demoUrl)} target="_blank" rel="noopener noreferrer" variant="primary">
                   Buka Demo ↗
                 </Button>
               )}
               {active.repoUrl && (
-                <Button as="a" href={active.repoUrl} target="_blank" rel="noopener noreferrer" variant="ghost">
+                <Button as="a" href={normalizeUrl(active.repoUrl)} target="_blank" rel="noopener noreferrer" variant="ghost">
                   Lihat Repo
                 </Button>
               )}

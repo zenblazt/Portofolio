@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Button from "@/components/ui/Button";
 
 const fadeUp = {
@@ -26,6 +27,16 @@ export default function Hero({ profile }) {
     <header className="relative z-10 py-20 md:py-28">
       <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
+          {profile?.avatarUrl && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="relative mb-5 h-20 w-20 overflow-hidden rounded-full border-2 border-pink/50"
+            >
+              <Image src={profile.avatarUrl} alt={name} fill className="object-cover" />
+            </motion.div>
+          )}
           <motion.span
             custom={0}
             variants={fadeUp}

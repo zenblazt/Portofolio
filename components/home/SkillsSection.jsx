@@ -2,12 +2,6 @@
 
 import Reveal from "@/components/ui/Reveal";
 
-const categoryLabels = {
-  hardware: "🖥️ IT & Hardware",
-  design: "🎨 Desain & Office",
-  webdev: "💻 Web & Produk Digital",
-};
-
 export default function SkillsSection({ skills }) {
   if (!skills || skills.length === 0) return null;
 
@@ -26,23 +20,21 @@ export default function SkillsSection({ skills }) {
           <p className="mt-3 text-ink-dim">Dari urusan hardware sampai bikin aplikasi web.</p>
         </Reveal>
 
-        {Object.entries(categoryLabels).map(([key, label]) =>
-          grouped[key] ? (
-            <div key={key} className="mb-10 last:mb-0">
-              <h3 className="mb-4 text-sm font-bold text-ink-dim">{label}</h3>
-              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
-                {grouped[key].map((s, i) => (
-                  <Reveal key={s.id} delay={i * 0.05}>
-                    <div className="rounded-2xl border border-border bg-card p-5 text-center transition-transform hover:-translate-y-1 hover:border-mint">
-                      <div className="mb-2 text-2xl">{s.emoji}</div>
-                      <div className="text-sm font-bold">{s.name}</div>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
+        {Object.entries(grouped).map(([category, catSkills]) => (
+          <div key={category} className="mb-10 last:mb-0">
+            <h3 className="mb-4 text-sm font-bold text-ink-dim">{category}</h3>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+              {catSkills.map((s, i) => (
+                <Reveal key={s.id} delay={i * 0.05}>
+                  <div className="rounded-2xl border border-border bg-card p-5 text-center transition-transform hover:-translate-y-1 hover:border-mint">
+                    <div className="mb-2 text-2xl">{s.emoji}</div>
+                    <div className="text-sm font-bold">{s.name}</div>
+                  </div>
+                </Reveal>
+              ))}
             </div>
-          ) : null
-        )}
+          </div>
+        ))}
       </div>
     </section>
   );

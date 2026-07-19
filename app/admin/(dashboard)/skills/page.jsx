@@ -3,12 +3,7 @@
 import { useEffect, useState } from "react";
 import Modal from "@/components/ui/Modal";
 
-const empty = { name: "", category: "webdev", emoji: "⚡", order: 0 };
-const categories = [
-  { value: "hardware", label: "IT & Hardware" },
-  { value: "design", label: "Desain & Office" },
-  { value: "webdev", label: "Web & Produk Digital" },
-];
+const empty = { name: "", category: "", emoji: "⚡", order: 0 };
 
 export default function AdminSkillsPage() {
   const [items, setItems] = useState([]);
@@ -86,12 +81,11 @@ export default function AdminSkillsPage() {
       ) : items.length === 0 ? (
         <p className="text-sm text-ink-dim">Belum ada skill.</p>
       ) : (
-        categories.map((cat) => {
-          const catItems = items.filter((i) => i.category === cat.value);
-          if (catItems.length === 0) return null;
+        Array.from(new Set(items.map((i) => i.category))).map((cat) => {
+          const catItems = items.filter((i) => i.category === cat);
           return (
-            <div key={cat.value} className="mb-8">
-              <h3 className="mb-3 text-sm font-bold text-ink-dim">{cat.label}</h3>
+            <div key={cat} className="mb-8">
+              <h3 className="mb-3 text-sm font-bold text-ink-dim">{cat}</h3>
               <div className="flex flex-wrap gap-3">
                 {catItems.map((item) => (
                   <div key={item.id} className="flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5">
@@ -127,17 +121,19 @@ export default function AdminSkillsPage() {
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             className="rounded-xl border border-border bg-bg px-4 py-2.5 text-sm outline-none focus:border-pink"
           />
-          <select
+          <input
+            required
+            list="category-suggestions"
+            placeholder="Kategori (bebas, misal: IT & Hardware)"
             value={form.category}
             onChange={(e) => setForm({ ...form, category: e.target.value })}
             className="rounded-xl border border-border bg-bg px-4 py-2.5 text-sm outline-none focus:border-pink"
-          >
-            {categories.map((c) => (
-              <option key={c.value} value={c.value}>
-                {c.label}
-              </option>
+          />
+          <datalist id="category-suggestions">
+            {Array.from(new Set(items.map((i) => i.category))).map((c) => (
+              <option key={c} value={c} />
             ))}
-          </select>
+          </datalist>
           <button
             type="submit"
             disabled={saving}
