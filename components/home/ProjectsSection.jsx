@@ -8,12 +8,9 @@ import Button from "@/components/ui/Button";
 import { normalizeUrl } from "@/lib/utils";
 
 const glowColors = ["bg-pink", "bg-blue", "bg-mint", "bg-yellow"];
-const spans = ["lg:col-span-4", "lg:col-span-2", "lg:col-span-2", "lg:col-span-4"];
 
 export default function ProjectsSection({ projects }) {
   const [active, setActive] = useState(null);
-
-  if (!projects || projects.length === 0) return null;
 
   return (
     <section id="projects" className="relative z-10 py-24">
@@ -24,9 +21,14 @@ export default function ProjectsSection({ projects }) {
           <p className="mt-3 text-ink-dim">Bukan sekadar mockup — dikerjakan nyata dan terus dikembangkan.</p>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-6">
+        {!projects || projects.length === 0 ? (
+          <p className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-ink-dim">
+            Belum ada proyek ditambahkan. Kelola lewat halaman admin.
+          </p>
+        ) : (
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {projects.map((p, i) => (
-            <Reveal key={p.id} delay={i * 0.08} className={spans[i % spans.length]}>
+            <Reveal key={p.id} delay={i * 0.08}>
               <button
                 onClick={() => setActive(p)}
                 className="group relative w-full overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-card to-card/60 p-8 text-left transition-colors hover:border-pink"
@@ -58,6 +60,7 @@ export default function ProjectsSection({ projects }) {
             </Reveal>
           ))}
         </div>
+        )}
       </div>
 
       <Modal open={!!active} onClose={() => setActive(null)} maxWidth="max-w-xl">

@@ -3,9 +3,7 @@
 import Reveal from "@/components/ui/Reveal";
 
 export default function SkillsSection({ skills }) {
-  if (!skills || skills.length === 0) return null;
-
-  const grouped = skills.reduce((acc, s) => {
+  const grouped = (skills || []).reduce((acc, s) => {
     acc[s.category] = acc[s.category] || [];
     acc[s.category].push(s);
     return acc;
@@ -20,7 +18,12 @@ export default function SkillsSection({ skills }) {
           <p className="mt-3 text-ink-dim">Dari urusan hardware sampai bikin aplikasi web.</p>
         </Reveal>
 
-        {Object.entries(grouped).map(([category, catSkills]) => (
+        {!skills || skills.length === 0 ? (
+          <p className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-ink-dim">
+            Belum ada skill ditambahkan. Kelola lewat halaman admin.
+          </p>
+        ) : (
+        Object.entries(grouped).map(([category, catSkills]) => (
           <div key={category} className="mb-10 last:mb-0">
             <h3 className="mb-4 text-sm font-bold text-ink-dim">{category}</h3>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
@@ -34,7 +37,8 @@ export default function SkillsSection({ skills }) {
               ))}
             </div>
           </div>
-        ))}
+        ))
+        )}
       </div>
     </section>
   );

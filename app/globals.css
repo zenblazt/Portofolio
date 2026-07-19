@@ -43,6 +43,10 @@ textarea:focus-visible {
   color: transparent;
 }
 
+section {
+  scroll-margin-top: 88px;
+}
+
 .marquee-track {
   animation: marquee 26s linear infinite;
 }

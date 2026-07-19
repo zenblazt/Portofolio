@@ -123,17 +123,25 @@ export default function AdminSkillsPage() {
           />
           <input
             required
-            list="category-suggestions"
             placeholder="Kategori (bebas, misal: IT & Hardware)"
             value={form.category}
             onChange={(e) => setForm({ ...form, category: e.target.value })}
             className="rounded-xl border border-border bg-bg px-4 py-2.5 text-sm outline-none focus:border-pink"
           />
-          <datalist id="category-suggestions">
-            {Array.from(new Set(items.map((i) => i.category))).map((c) => (
-              <option key={c} value={c} />
-            ))}
-          </datalist>
+          {Array.from(new Set(items.map((i) => i.category))).length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {Array.from(new Set(items.map((i) => i.category))).map((c) => (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => setForm({ ...form, category: c })}
+                  className="rounded-full border border-border px-3 py-1 text-xs font-semibold text-ink-dim hover:border-pink hover:text-ink"
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+          )}
           <button
             type="submit"
             disabled={saving}

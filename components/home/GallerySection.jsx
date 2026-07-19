@@ -8,8 +8,6 @@ import Modal from "@/components/ui/Modal";
 export default function GallerySection({ items }) {
   const [active, setActive] = useState(null);
 
-  if (!items || items.length === 0) return null;
-
   return (
     <section id="gallery" className="relative z-10 py-24">
       <div className="mx-auto max-w-[1180px] px-6">
@@ -19,6 +17,11 @@ export default function GallerySection({ items }) {
           <p className="mt-3 text-ink-dim">Desain grafis dan tampilan produk digital. Klik untuk lihat lebih detail.</p>
         </Reveal>
 
+        {!items || items.length === 0 ? (
+          <p className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-ink-dim">
+            Belum ada gambar di galeri. Kelola lewat halaman admin.
+          </p>
+        ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
           {items.map((item, i) => (
             <Reveal key={item.id} delay={i * 0.05}>
@@ -39,6 +42,7 @@ export default function GallerySection({ items }) {
             </Reveal>
           ))}
         </div>
+        )}
       </div>
 
       <Modal open={!!active} onClose={() => setActive(null)} maxWidth="max-w-2xl">
