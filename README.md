@@ -10,7 +10,7 @@ Portfolio app full-stack: konten (proyek, galeri, skill) dikelola dari admin pan
 - JWT (jose) + bcryptjs untuk auth admin
 - Tailwind CSS + Framer Motion
 
-## Setup Awal
+## Setup Awal nya
 
 ```bash
 npm install
