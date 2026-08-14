@@ -1,6 +1,6 @@
 # ZenHub — Portfolio Web App
 
-Portfolio full-stack: konten (proyek, galeri, skill) dikelola dari admin panel, tersimpan di MySQL, gambar di-upload ke Cloudinary. Pesan dari form kontak masuk ke inbox admin.
+Portfolio app full-stack: konten (proyek, galeri, skill) dikelola dari admin panel, tersimpan di MySQL, gambar di-upload ke Cloudinary. Pesan dari form kontak masuk ke inbox admin.
 
 ## Stack
 
